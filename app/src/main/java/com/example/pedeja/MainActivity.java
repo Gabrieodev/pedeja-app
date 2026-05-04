@@ -1,24 +1,73 @@
 package com.example.pedeja;
 
 import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
+
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONObject;
 
 public class MainActivity extends AppCompatActivity {
+
+    Button btnTestar;
+    TextView txtResultado;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
-        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
-            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
-            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
-            return insets;
-        });
+
+        btnTestar = findViewById(R.id.btnTestar);
+        txtResultado = findViewById(R.id.txtResultado);
+
+        btnTestar.setOnClickListener(v -> testarAPI());
+        }
+    private void testarAPI() {
+
+        String url = "https://fakerestaurantapi.runasp.net/api/Restaurant/items";
+
+        RequestQueue queue = Volley.newRequestQueue(this);
+
+        JsonArrayRequest request = new JsonArrayRequest(
+                Request.Method.GET,
+                url,
+                null,
+                response -> {
+
+                    StringBuilder resultado = new StringBuilder();
+
+                    for (int i = 0; i < 5; i++) {
+                        try {
+                            JSONObject item = response.getJSONObject(i);
+
+                            String nome = item.getString("itemName");
+                            double preco = item.getDouble("itemPrice");
+
+                            resultado.append(nome)
+                                    .append(" - R$ ")
+                                    .append(preco)
+                                    .append("\n\n");
+
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                    }
+
+                    txtResultado.setText(resultado.toString());
+
+                },
+                error -> {
+                    txtResultado.setText("Erro: " + error.toString());
+                }
+        );
+
+        queue.add(request);
     }
 }
