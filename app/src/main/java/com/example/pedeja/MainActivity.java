@@ -10,6 +10,7 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.Volley;
+import com.example.pedeja.database.DatabaseHelper;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -23,6 +24,9 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        DatabaseHelper db = new DatabaseHelper(this);
+        db.getWritableDatabase();
 
         btnTestar = findViewById(R.id.btnTestar);
         txtResultado = findViewById(R.id.txtResultado);
