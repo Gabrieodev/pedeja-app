@@ -1,14 +1,19 @@
 package com.example.pedeja.database;
 
-import android.content.ContentValues; // <-- Importação adicionada aqui
+import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class DatabaseHelper extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "pedeja.db";
-    private static final int DATABASE_VERSION = 1;
+    // 1. Subimos a versão para o Android perceber a atualização
+    private static final int DATABASE_VERSION = 2;
 
     public DatabaseHelper(Context context) {
         super(context, DATABASE_NAME, null, DATABASE_VERSION);
@@ -24,14 +29,16 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE produto (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nome TEXT NOT NULL," +
-                "preco REAL NOT NULL," + // Recebe o nosso valor em double
+                "preco REAL NOT NULL," +
                 "categoria_id INTEGER," +
                 "FOREIGN KEY (categoria_id) REFERENCES categoria(id))");
 
+        // 2. Coluna 'senha' adicionada para instalações novas do app
         db.execSQL("CREATE TABLE cliente (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nome TEXT," +
                 "email TEXT," +
+                "senha TEXT," +
                 "endereco TEXT)");
 
         db.execSQL("CREATE TABLE pedido (" +
@@ -54,30 +61,50 @@ public class DatabaseHelper extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS item_pedido");
-        db.execSQL("DROP TABLE IF EXISTS pedido");
-        db.execSQL("DROP TABLE IF EXISTS produto");
-        db.execSQL("DROP TABLE IF EXISTS cliente");
-        db.execSQL("DROP TABLE IF EXISTS categoria");
-        onCreate(db);
+        // 3. A ATUALIZAÇÃO SEGURA:
+        // Se o celular do usuário tem a versão 1 do banco...
+        if (oldVersion < 2) {
+            //  adicionamo a coluna de senha. Nenhum dado é apagado!
+            db.execSQL("ALTER TABLE cliente ADD COLUMN senha TEXT");
+        }
     }
 
-    //  MÉTODO PARA INSERIR OS DADOS DA API ---
+    // --- MÉTODOS DO BANCO ---
+
     public boolean inserirProduto(String nome, double preco) {
         SQLiteDatabase db = this.getWritableDatabase();
         ContentValues contentValues = new ContentValues();
 
-        // Mapeando exatamente para as colunas da tabela 'produto'
         contentValues.put("nome", nome);
         contentValues.put("preco", preco);
 
-        // Inserindo na tabela 'produto'
         long resultado = db.insert("produto", null, contentValues);
 
         if (resultado == -1) {
-            return false; // Falhou ao salvar
+            return false;
         } else {
-            return true;  // Salvo com sucesso no banco de dados local
+            return true;
         }
+    }
+
+    public List<String> listarProdutos() {
+        List<String> listaProdutos = new ArrayList<>();
+        SQLiteDatabase db = this.getReadableDatabase();
+
+        Cursor cursor = db.rawQuery("SELECT nome, preco FROM produto", null);
+
+        if (cursor.moveToFirst()) {
+            do {
+                String nome = cursor.getString(0);
+                double preco = cursor.getDouble(1);
+
+                listaProdutos.add(nome + " - R$ " + preco);
+            } while (cursor.moveToNext());
+        }
+
+        cursor.close();
+        db.close();
+
+        return listaProdutos;
     }
 }
