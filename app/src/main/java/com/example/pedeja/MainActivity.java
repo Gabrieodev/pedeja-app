@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
         txtResultado = findViewById(R.id.txtResultado);
 
         btnTestar.setOnClickListener(v -> testarAPI());
-        }
+    }
+
     private void testarAPI() {
 
         String url = "https://fakerestaurantapi.runasp.net/api/Restaurant/items";
@@ -47,11 +48,15 @@ public class MainActivity extends AppCompatActivity {
 
                     StringBuilder resultado = new StringBuilder();
 
-                    for (int i = 0; i < 5; i++) {
+                    // O Math.min garante que se a API mandar só 3 itens, ele roda 3 vezes. Se mandar 20, ele roda 5.
+                    int limite = Math.min(5, response.length());
+
+                    for (int i = 0; i < limite; i++) {
                         try {
                             JSONObject item = response.getJSONObject(i);
 
                             String nome = item.getString("itemName");
+                            // Mantendo a tipagem correta com o double para não perder os centavos
                             double preco = item.getDouble("itemPrice");
 
                             resultado.append(nome)

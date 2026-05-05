@@ -1,5 +1,6 @@
 package com.example.pedeja.database;
 
+import android.content.ContentValues; // <-- Importação adicionada aqui
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -23,7 +24,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("CREATE TABLE produto (" +
                 "id INTEGER PRIMARY KEY AUTOINCREMENT," +
                 "nome TEXT NOT NULL," +
-                "preco REAL NOT NULL," +
+                "preco REAL NOT NULL," + // Recebe o nosso valor em double
                 "categoria_id INTEGER," +
                 "FOREIGN KEY (categoria_id) REFERENCES categoria(id))");
 
@@ -59,5 +60,24 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         db.execSQL("DROP TABLE IF EXISTS cliente");
         db.execSQL("DROP TABLE IF EXISTS categoria");
         onCreate(db);
+    }
+
+    //  MÉTODO PARA INSERIR OS DADOS DA API ---
+    public boolean inserirProduto(String nome, double preco) {
+        SQLiteDatabase db = this.getWritableDatabase();
+        ContentValues contentValues = new ContentValues();
+
+        // Mapeando exatamente para as colunas da tabela 'produto'
+        contentValues.put("nome", nome);
+        contentValues.put("preco", preco);
+
+        // Inserindo na tabela 'produto'
+        long resultado = db.insert("produto", null, contentValues);
+
+        if (resultado == -1) {
+            return false; // Falhou ao salvar
+        } else {
+            return true;  // Salvo com sucesso no banco de dados local
+        }
     }
 }
