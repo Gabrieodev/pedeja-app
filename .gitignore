@@ -1,26 +1,15 @@
-# Android Studio / IDE
-.idea/
 *.iml
-
-# Gradle
-.gradle/
-
-# Local config
-local.properties
-
-# Build outputs
+.gradle
+/local.properties
+/.idea/caches
+/.idea/libraries
+/.idea/modules.xml
+/.idea/workspace.xml
+/.idea/navEditor.xml
+/.idea/assetWizardSettings.xml
+.DS_Store
 /build
-app/build/
-
-# Android
 /captures
 .externalNativeBuild
 .cxx
-
-# Database temporary files (SQLite)
-*.db-journal
-*.db-wal
-*.db-shm
-
-# System files
-.DS_Store
+local.properties

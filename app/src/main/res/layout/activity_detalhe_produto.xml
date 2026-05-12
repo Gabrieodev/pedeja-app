@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/branco">
+
+    <!-- Toolbar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/amarelo"
+        android:padding="16dp"
+        android:paddingTop="36dp"
+        android:gravity="center_vertical">
+
+        <TextView
+            android:id="@+id/btnVoltarDetalhe"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="←"
+            android:textSize="24sp"
+            android:textColor="@color/branco"
+            android:layout_marginEnd="16dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Detalhe do Produto"
+            android:textColor="@color/branco"
+            android:textSize="18sp"
+            android:textStyle="bold"/>
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:gravity="center">
+
+            <!-- Imagem / Emoji do produto -->
+            <TextView
+                android:id="@+id/tvEmojiDetalhe"
+                android:layout_width="160dp"
+                android:layout_height="160dp"
+                android:text="🍔"
+                android:textSize="80sp"
+                android:gravity="center"
+                android:background="@color/cinza_fundo"
+                android:layout_marginBottom="24dp"/>
+
+            <TextView
+                android:id="@+id/tvNomeDetalhe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="X-Burguer"
+                android:textColor="@color/preto"
+                android:textSize="22sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvDescDetalhe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pão, carne, queijo, alface, tomate e molho especial."
+                android:textColor="@color/cinza_texto"
+                android:textSize="14sp"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:id="@+id/tvPrecoDetalhe"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="R$ 22,90"
+                android:textColor="@color/preto"
+                android:textSize="26sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Controle de quantidade -->
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="24dp">
+
+                <Button
+                    android:id="@+id/btnMenos"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="-"
+                    android:textSize="18sp"
+                    android:textColor="@color/branco"
+                    android:background="@drawable/btn_cinza_arredondado"
+            android:backgroundTint="@null"
+                    android:padding="0dp"/>
+
+                <TextView
+                    android:id="@+id/tvQuantidade"
+                    android:layout_width="48dp"
+                    android:layout_height="wrap_content"
+                    android:text="1"
+                    android:textSize="18sp"
+                    android:textColor="@color/preto"
+                    android:textStyle="bold"
+                    android:gravity="center"/>
+
+                <Button
+                    android:id="@+id/btnMais"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:text="+"
+                    android:textSize="18sp"
+                    android:textColor="@color/branco"
+                    android:background="@drawable/btn_amarelo_arredondado"
+            android:backgroundTint="@null"
+                    android:padding="0dp"/>
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- Botão Adicionar ao Carrinho fixo embaixo -->
+    <Button
+        android:id="@+id/btnAdicionarCarrinho"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:text="Adicionar ao carrinho"
+        android:textColor="@color/branco"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:background="@drawable/btn_amarelo_arredondado"
+            android:backgroundTint="@null"
+        android:layout_margin="16dp"/>
+
+</LinearLayout>

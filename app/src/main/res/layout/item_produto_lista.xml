@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="3dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="16dp"
+        android:background="@color/branco">
+
+        <TextView
+            android:id="@+id/tvEmojiProduto"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:text="🍔"
+            android:textSize="32sp"
+            android:gravity="center"
+            android:layout_marginEnd="12dp"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvNomeProdutoLista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="X-Burguer"
+                android:textColor="@color/preto"
+                android:textSize="15sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tvPrecoProdutoLista"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="R$ 22,90"
+                android:textColor="@color/cinza_texto"
+                android:textSize="13sp"
+                android:layout_marginTop="2dp"/>
+        </LinearLayout>
+
+        <!-- Botão + -->
+        <TextView
+            android:id="@+id/btnAddProduto"
+            android:layout_width="36dp"
+            android:layout_height="36dp"
+            android:text="+"
+            android:textSize="22sp"
+            android:textColor="@color/branco"
+            android:gravity="center"
+            android:background="@drawable/btn_amarelo_arredondado"/>
+
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

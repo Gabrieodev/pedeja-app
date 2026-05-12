@@ -1,9 +1,13 @@
-<resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
-    <style name="Base.Theme.PedeJa" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Theme.PedeJa" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <item name="colorPrimary">@color/vermelho</item>
+        <item name="colorPrimaryDark">@color/vermelho_escuro</item>
+        <item name="colorAccent">@color/vermelho</item>
+        <item name="android:windowBackground">@color/branco</item>
     </style>
-
-    <style name="Theme.PedeJa" parent="Base.Theme.PedeJa" />
+    <style name="Theme.PedeJa.Splash" parent="Theme.PedeJa">
+        <item name="android:windowBackground">@color/preto</item>
+        <item name="android:statusBarColor">@color/preto</item>
+    </style>
 </resources>

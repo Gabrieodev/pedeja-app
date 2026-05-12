@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="150dp"
+    android:layout_height="wrap_content"
+    android:layout_marginEnd="12dp"
+    android:layout_marginBottom="8dp"
+    app:cardCornerRadius="12dp"
+    app:cardElevation="4dp">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:background="@color/branco"
+        android:padding="12dp">
+
+        <TextView
+            android:id="@+id/tvEmojiProdutoDestaque"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:text="🍔"
+            android:textSize="36sp"
+            android:gravity="center"/>
+
+        <TextView
+            android:id="@+id/tvNomeProdutoDestaque"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hambúrguer"
+            android:textColor="@color/preto"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:layout_marginTop="4dp"/>
+
+        <TextView
+            android:id="@+id/tvPrecoProdutoDestaque"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="R$ 29,90"
+            android:textColor="@color/cinza_texto"
+            android:textSize="11sp"
+            android:layout_marginTop="2dp"/>
+
+        <Button
+            android:id="@+id/btnVerProduto"
+            android:layout_width="match_parent"
+            android:layout_height="30dp"
+            android:text="Detalhes"
+            android:textSize="11sp"
+            android:textColor="@color/branco"
+            android:background="@drawable/btn_amarelo_arredondado"
+            android:layout_marginTop="8dp"/>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

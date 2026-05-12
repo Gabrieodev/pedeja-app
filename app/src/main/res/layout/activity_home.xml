@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/drawerLayout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/cinza_fundo">
+
+        <!-- Header -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/amarelo"
+            android:orientation="vertical"
+            android:padding="20dp"
+            android:paddingTop="40dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical">
+
+                <TextView
+                    android:id="@+id/btnMenu"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="☰"
+                    android:textSize="26sp"
+                    android:textColor="@color/branco"
+                    android:padding="4dp"
+                    android:layout_marginEnd="12dp"/>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tvSaudacao"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Olá!"
+                        android:textColor="@color/branco"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="O que você deseja pedir hoje?"
+                        android:textColor="@color/branco"
+                        android:textSize="13sp"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <EditText
+                android:id="@+id/etBusca"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/busca_arredondada"
+                android:hint="🔍  Buscar produtos..."
+                android:textSize="14sp"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"/>
+        </LinearLayout>
+
+        <!-- Chips de categoria -->
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:scrollbars="none"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="4dp"
+            android:background="@color/branco">
+
+            <LinearLayout
+                android:id="@+id/llChips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"/>
+        </HorizontalScrollView>
+
+        <!-- Grid de produtos -->
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvProdutos"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:padding="12dp"
+            android:clipToPadding="false"/>
+
+    </LinearLayout>
+
+    <!-- Menu Lateral -->
+    <LinearLayout
+        android:id="@+id/navDrawer"
+        android:layout_width="280dp"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        android:orientation="vertical"
+        android:background="@color/branco">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/amarelo"
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:paddingTop="48dp">
+
+            <!-- Logo PedeJá -->
+            <ImageView
+                android:layout_width="140dp"
+                android:layout_height="70dp"
+                android:src="@drawable/logo_pedeja2"
+                android:scaleType="fitStart"
+                android:background="@android:color/transparent"
+                android:layout_marginBottom="8dp"/>
+
+            <TextView
+                android:id="@+id/tvNomeMenu"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text=""
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"/>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/menuPedidos"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Meus Pedidos"
+            android:textColor="@color/preto"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:paddingStart="24dp"
+            android:background="?attr/selectableItemBackground"/>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE"/>
+
+        <TextView
+            android:id="@+id/menuCarrinho"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Carrinho"
+            android:textColor="@color/preto"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:paddingStart="24dp"
+            android:background="?attr/selectableItemBackground"/>
+
+        <View android:layout_width="match_parent" android:layout_height="1dp" android:background="#EEEEEE"/>
+
+        <TextView
+            android:id="@+id/menuSair"
+            android:layout_width="match_parent"
+            android:layout_height="56dp"
+            android:text="Sair"
+            android:textColor="@color/vermelho"
+            android:textSize="16sp"
+            android:gravity="center_vertical"
+            android:paddingStart="24dp"
+            android:background="?attr/selectableItemBackground"/>
+
+    </LinearLayout>
+
+</androidx.drawerlayout.widget.DrawerLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="32dp"
+    android:background="@color/branco">
+
+    <!-- Ícone de check -->
+    <TextView
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:text="✅"
+        android:textSize="64sp"
+        android:gravity="center"
+        android:layout_marginBottom="24dp"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Pedido realizado"
+        android:textColor="@color/preto"
+        android:textSize="24sp"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="com sucesso!"
+        android:textColor="@color/preto"
+        android:textSize="24sp"
+        android:textStyle="bold"
+        android:layout_marginBottom="16dp"/>
+
+    <TextView
+        android:id="@+id/tvNumeroPedido"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Seu pedido nº 12345 está a caminho 🛵"
+        android:textColor="@color/cinza_texto"
+        android:textSize="14sp"
+        android:gravity="center"
+        android:layout_marginBottom="40dp"/>
+
+    <Button
+        android:id="@+id/btnAcompanhar"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Acompanhar pedido"
+        android:textColor="@color/branco"
+        android:textSize="15sp"
+        android:textStyle="bold"
+        android:background="@drawable/btn_amarelo_arredondado"
+            android:backgroundTint="@null"
+        android:layout_marginBottom="12dp"/>
+
+    <Button
+        android:id="@+id/btnVoltarHome"
+        android:layout_width="match_parent"
+        android:layout_height="52dp"
+        android:text="Voltar para Home"
+        android:textColor="@color/branco"
+        android:textSize="15sp"
+        android:background="@drawable/btn_cinza_arredondado"
+            android:backgroundTint="@null"/>
+
+</LinearLayout>
