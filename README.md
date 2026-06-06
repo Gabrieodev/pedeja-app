@@ -1,202 +1,172 @@
-# App_PedeJa
+<div align="center">
 
-Academic project developed for mobile programming course inspired by delivery apps.
-This application consumes the **PedeJa REST API**, allowing users to interact with a food delivery system through a native Android interface.
+# PedeJá — Android Client
 
----
+**Native Android frontend for the PedeJá food delivery API — category browsing, order creation and real-time item management.**
 
-## 🚀 Technologies
+[![Java](https://img.shields.io/badge/Java-ED8B00?style=for-the-badge&logo=openjdk&logoColor=white)](https://www.java.com/)
+[![Android](https://img.shields.io/badge/Android-3DDC84?style=for-the-badge&logo=android&logoColor=white)](https://developer.android.com/)
+[![Gradle](https://img.shields.io/badge/Gradle-02303A?style=for-the-badge&logo=gradle&logoColor=white)](https://gradle.org/)
+[![Material Design](https://img.shields.io/badge/Material_Design-757575?style=for-the-badge&logo=materialdesign&logoColor=white)](https://m3.material.io/)
 
-- Java
-- XML
-- Android Studio
-- Gradle
-- REST API Integration
-- HTTP Requests
-- SQLite (backend persistence)
-- Material Design Components
+</div>
 
 ---
 
-## 📱 Features
+## Overview
 
-### Category Browsing
-- List product categories
+Native Android client for the **PedeJá REST API**, developed for the Mobile Programming course. The application covers the full delivery interaction flow — browsing categories and products, creating orders, adding items with quantity control, and tracking order status — all consuming the Spring Boot backend over HTTP.
 
-### Product Catalog
-- Browse available products
-- View product details
-
-### Order Management
-- Create new orders
-- View order history
-- Track order status
-
-### Order Items
-- Add products to orders
-- Quantity management
-- Automatic subtotal calculation
-
-### API Integration
-- Consume backend REST endpoints
-- Real-time data synchronization
+Backend repository: [pedeja-api](https://github.com/gabrieodev/pedeja-api)
 
 ---
 
-## 🏗️ Application Architecture
-
-The mobile app follows a client-server architecture:
+## Architecture
 
 ```text
-Android App (Java/XML)
-        ↓
-HTTP Requests
-        ↓
-PedeJa REST API (Spring Boot)
-        ↓
-SQLite Database
+Android App (Java / XML)
+         ↓
+   HTTP Requests
+         ↓
+PedeJá REST API (Spring Boot)
+         ↓
+    SQLite Database
 ```
 
-## 📱 Overview
-
-PedeJá simulates a basic food delivery system, allowing management of:
-
-- Product categories  
-- Products  
-- Customers  
-- Orders  
-- Order items  
-
-The goal is to represent a real-world delivery flow using a structured relational database.
-
-## 🗄️ Database Diagram
-
-```mermaid
-erDiagram
-    CATEGORIA {
-        INTEGER id PK
-        TEXT nome
-    }
-
-    PRODUTO {
-        INTEGER id PK
-        TEXT nome
-        REAL preco
-        INTEGER categoria_id FK
-    }
-
-    CLIENTE {
-        INTEGER id PK
-        TEXT nome
-        TEXT email
-        TEXT endereco
-    }
-
-    PEDIDO {
-        INTEGER id PK
-        INTEGER cliente_id FK
-        REAL total
-        TEXT data
-        TEXT status
-    }
-
-    ITEM_PEDIDO {
-        INTEGER id PK
-        INTEGER pedido_id FK
-        INTEGER produto_id FK
-        INTEGER quantidade
-        REAL subtotal
-    }
-
-    CATEGORIA ||--o{ PRODUTO : has
-    CLIENTE ||--o{ PEDIDO : places
-    PEDIDO ||--o{ ITEM_PEDIDO : contains
-    PRODUTO ||--o{ ITEM_PEDIDO : included_in
-```
-
-## 📲 Screens
-
-The application includes the following main screens:
-
-- Home Screen
-- Customer Registration
-- Product Listing
-- Order Creation
-- Order Item Management
-
-> Screenshots will be added soon.
+The mobile layer is purely a client — all business logic, total calculation and persistence live in the backend. The Android app is responsible for presentation, user input and HTTP communication only.
 
 ---
 
-## 🔌 Backend Integration
+## Features
 
-This mobile application consumes the **PedeJa REST API**, integrating with the following endpoints:
-
-- `/customers`
-- `/categories`
-- `/products`
-- `/orders`
-- `/order-items`
-
-**Backend Repository:**  
-[[Link to PedeJa API repository](https://github.com/Gabrieodev/PedeJa_API)]
+| Module | Functionality |
+|---|---|
+| Categories | Browse available product categories |
+| Products | List products, view details — filtered by category |
+| Customers | Customer registration |
+| Orders | Create orders, view history, track status |
+| Order Items | Add products to orders, quantity management, automatic subtotal display |
+| API Integration | Consume all backend REST endpoints with real-time data sync |
 
 ---
 
-## ▶️ Running the Project
+## Screens
+
+- Home
+- Customer registration
+- Product listing
+- Order creation
+- Order item management
+
+> Screenshots to be added.
+
+---
+
+## Tech Stack
+
+| Technology | Role |
+|---|---|
+| Java | Application language |
+| XML | UI layout definitions |
+| Android Studio | IDE and emulator |
+| Gradle | Build tool and dependency management |
+| HTTP client | REST API consumption |
+| Material Design Components | UI component library |
+
+---
+
+## Backend API Endpoints
+
+| Endpoint | Resource |
+|---|---|
+| `/cliente` | Customers |
+| `/categoria` | Categories |
+| `/produto` | Products |
+| `/pedido` | Orders |
+| `/item-pedido` | Order items |
+
+Full endpoint documentation available in the [PedeJá API Swagger UI](https://github.com/gabrieodev/pedeja-api).
+
+---
+
+## Architectural Decisions
+
+**Strict client-server separation** — The Android app holds no local business logic. Order totals, subtotal calculations and data validation are enforced by the backend API. The mobile layer handles only presentation and user interaction, keeping both layers independently maintainable and testable.
+
+**Material Design Components** — Google's Material Design library was adopted from the start to ensure UI consistency, accessibility compliance and familiar interaction patterns for Android users — without building custom components from scratch.
+
+**HTTP over a local REST API** — The app communicates with the backend via standard HTTP requests rather than a database SDK or embedded storage. This reflects a real-world client-server pattern and makes the Android layer interchangeable with any other frontend that speaks the same API contract.
+
+---
+
+## Roadmap
+
+- [x] Category and product browsing
+- [x] Order creation and item management
+- [x] REST API integration with PedeJá backend
+- [x] Material Design UI
+- [ ] Retrofit for type-safe HTTP calls
+- [ ] MVVM architecture with ViewModel and LiveData
+- [ ] Authentication and user login
+- [ ] Shopping cart with local state management
+- [ ] Push notifications for order status updates
+- [ ] Real-time order tracking
+- [ ] Dark mode
+- [ ] Payment integration
+
+---
+
+## How to Run
 
 ### Prerequisites
 
-Before running the application, make sure you have installed:
-
-- Android Studio
+- Android Studio (latest stable)
 - JDK 21
-- Gradle
-- PedeJa API running locally
+- PedeJá API running locally — see [backend setup](https://github.com/gabrieodev/pedeja-api)
 
-### Installation
-
-Clone the repository:
+### 1. Clone the repository
 
 ```bash
-git clone <repository-url>
+git clone https://github.com/gabrieodev/app-pedeja.git
 ```
 
-Open the project in **Android Studio**.
+### 2. Open in Android Studio
 
-Configure the API base URL if necessary.
+Open the project folder in Android Studio and let Gradle sync complete.
 
-Run the backend server:
+### 3. Start the backend
 
 ```bash
+# In the pedeja-api directory
 mvn spring-boot:run
 ```
 
-Start an Android emulator or connect a physical device.
+### 4. Configure the API base URL
 
-Run the application directly from Android Studio.
+Update the base URL in the network configuration file to point to your local backend:
 
----
+```java
+private static final String BASE_URL = "http://10.0.2.2:8080/";
+```
 
-## 🎯 Future Improvements
+> `10.0.2.2` is the Android emulator's alias for `localhost` on the host machine.
 
-Planned enhancements for future versions:
+### 5. Run the application
 
-- Authentication and Authorization
-- User Login and Registration
-- Shopping Cart
-- Payment Integration
-- Push Notifications
-- Real-Time Order Tracking
-- Dark Mode
-- UI/UX Improvements
-- Retrofit Implementation
-- MVVM Architecture
+Start an Android emulator or connect a physical device and run the app from Android Studio.
 
 ---
 
-## 🙏 Acknowledgments
+## License
 
-Special thanks to my project team and professors for their collaboration, guidance, and shared knowledge throughout the development of this application.
+This project is licensed under the [MIT License](LICENSE).
 
-This project was an important opportunity to strengthen practical skills in **Mobile Development, Backend Integration, teamwork, and Software Architecture**.
+---
+
+<div align="center">
+
+**PedeJá Android** — Native delivery client. Java · Android · Material Design
+
+See also: [PedeJá API — Backend](https://github.com/gabrieodev/pedeja-api)
+
+</div>
